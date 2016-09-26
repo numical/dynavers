@@ -1,0 +1,35 @@
+{
+  "name": "dynavers",
+  "description": "Install multiple versions of a module and switch between them",
+  "version": "0.0.0",
+  "author": "Mike Evans <mike.evans@numical.com> (https://github.com/numical)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/numical/dynavers"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "install-module-versions": "bin/install-module-versions"
+  },
+  "engines": {
+    "node": ">= 4"
+  },
+  "keywords": [
+    "npm",
+    "testing",
+    "module",
+    "require"
+  ],
+  "scripts": {
+    "test": "standard"
+  },
+  "dependencies": {
+    "rimraf": "^2.4.3",
+    "rsvp": "^3.1.0",
+    "spawn-cmd": "0.0.2"
+  },
+  "devDependencies": {
+    "standard": "^8.1.0"
+  }
+}
