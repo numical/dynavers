@@ -1,7 +1,7 @@
 {
   "name": "dynavers",
   "description": "Install multiple versions of a module and switch between them",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Mike Evans <mike.evans@numical.com> (https://github.com/numical)",
   "repository": {
     "type": "git",
