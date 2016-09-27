@@ -30,6 +30,6 @@
     "spawn-cmd": "0.0.2"
   },
   "devDependencies": {
-    "standard": "^8.1.0"
+    "semistandard": "^9.0.0"
   }
 }

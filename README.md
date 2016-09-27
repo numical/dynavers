@@ -2,6 +2,7 @@
 
 Install multiple versions of a module then dynamically switch between them.
 ```js
+const setModuleVersion = require('dynavers')
 const versions = ['1.13.1', '2.1.0-beta.24']
 for(const version of versions) {
   setModuleVersion('webpack', version);
