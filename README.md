@@ -2,7 +2,7 @@
 
 Install multiple versions of a module then dynamically switch between them.
 ```js
-const setModuleVersion = require('dynavers')
+const setModuleVersion = require('dynavers')(dynavers.json)
 const versions = ['1.13.1', '2.1.0-beta.24']
 for(const version of versions) {
   setModuleVersion('webpack', version);
@@ -61,6 +61,7 @@ The API is a single function `setModuleVersion(moduleName, moduleVersion)`.
 This will ensure any subsequent `require` calls to that module *from anywhere* will use the specified version.
 Note this will also ensure any exports within that module will also use the specified version:
 ```js
+const setModuleVersion = require('dynavers')(dynavers.json)
 setModuleVersion('webpack', '1.13.1')
 var webpack = require('webpack')          // version 1.13.1
 var Chunk = require('weback/lib/Chunk')   // will also be the 1.13.1 version
@@ -68,8 +69,7 @@ var Chunk = require('weback/lib/Chunk')   // will also be the 1.13.1 version
 
 ## Caveats
 1. This works by monkey-patching `node`'s `Module` load mechanism.  You may not like this.
-2. Note the version number! Currently very much *alpha* code - no tests yet either!
-3. The `load` mechanism has not been tried with all exotic form of package name that `require` will
+2. The `load` mechanism has not been tried with all the exotic forms of package identifier that `require` will
    accept.  Please [let me know](https://github.com/numical/dynavers/issues) if any this fails.
 
 ## Alternatives

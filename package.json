@@ -22,7 +22,8 @@
     "require"
   ],
   "scripts": {
-    "test": "standard"
+    "pretest": "semistandard && ./bin/install-module-versions ./spec/dynavers.json",
+    "test": "jasmine"
   },
   "dependencies": {
     "rimraf": "^2.4.3",
@@ -30,6 +31,8 @@
     "spawn-cmd": "0.0.2"
   },
   "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jasmine-spec-reporter": "^2.7.0",
     "semistandard": "^9.0.0"
   }
 }

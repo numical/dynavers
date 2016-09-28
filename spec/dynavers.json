@@ -1,0 +1,6 @@
+{
+  "path": "./spec/dynavers_modules",
+  "versions": {
+    "dynavers-test" : ["0.0.1", "0.0.2"]
+  }
+}
