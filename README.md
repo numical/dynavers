@@ -1,8 +1,10 @@
-# Dynamic Module Versions for Node
+[![npm version](https://badge.fury.io/js/dynavers.svg)](http://badge.fury.io/js/dynavers) [![Dependency Status](https://david-dm.org/numical/dynavers.svg)](https://david-dm.org/numical/dynavers) [![Build status](https://travis-ci.org/numical/dynavers.svg)](https://travis-ci.org/numical/dynavers) [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
+
+[![NPM](https://nodei.co/npm/dynavers.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/dynavers/)
 
 Install multiple versions of a module then dynamically switch between them.
 ```js
-const setModuleVersion = require('dynavers')(dynavers.json)
+const setModuleVersion = require('dynavers')('dynavers.json')
 const versions = ['1.13.1', '2.1.0-beta.24']
 for(const version of versions) {
   setModuleVersion('webpack', version);
@@ -61,7 +63,7 @@ The API is a single function `setModuleVersion(moduleName, moduleVersion)`.
 This will ensure any subsequent `require` calls to that module *from anywhere* will use the specified version.
 Note this will also ensure any exports within that module will also use the specified version:
 ```js
-const setModuleVersion = require('dynavers')(dynavers.json)
+const setModuleVersion = require('dynavers')('dynavers.json')
 setModuleVersion('webpack', '1.13.1')
 var webpack = require('webpack')          // version 1.13.1
 var Chunk = require('weback/lib/Chunk')   // will also be the 1.13.1 version
