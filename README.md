@@ -69,10 +69,40 @@ var webpack = require('webpack')          // version 1.13.1
 var Chunk = require('weback/lib/Chunk')   // will also be the 1.13.1 version
 ```
 
+### Purging the module cache
+**Please read the Caveats below before opting to purge the cache**
+
+You may also want to purge the Module cache so that *all* modules are reloaded after you have set a
+version.
+This is easily done by adding an additional boolean argument:
+```js
+const setModuleVersion = require('dynavers')('dynavers.json')
+const purgeCache = true
+setModuleVersion('webpack', '1.13.1', purgeCache)
+```
+
+Alternatively you can make this the default behaviour by adding the `purgeCache` value in the
+configuration:
+```json
+{
+  "path": "dynavers_modules",
+  "versions": {
+    "webpack": ["1.13.1", "2.1.0-beta.24"]
+  },
+  purgeCache: true
+}
+```
+In this case, you need not specify it in the `setModuleVersion` call.
+
+
 ## Caveats
 1. This works by monkey-patching `node`'s `Module` load mechanism.  You may not like this.
 2. The `load` mechanism has not been tried with all the exotic forms of package identifier that `require` will
    accept.  Please [let me know](https://github.com/numical/dynavers/issues) if any this fails.
+3. Think carefully about using the `purgeCache` option.  In most cases it is a sledgehammer to crack
+   a nut as it forces all future `require`'d modules to be reloaded.  Moreover, **and this is important**, it
+   will **not** clear any in-memory modules, so you run the risk of simutaneously running multiple versions of a
+   module.  Eek!
 
 ## Alternatives
 [multidep](https://github.com/joliss/node-multidep) offers an alternative that specifies the version

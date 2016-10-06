@@ -7,9 +7,11 @@ var RSVP = require('rsvp');
 var rimraf = require('rimraf');
 var Module = require('module');
 
+// main API
 module.exports = function dynavers (specPath) {
   // initialisation
   var spec = getSpec(specPath);
+  var defaultPurgeCache = spec.purgeCache || false;
   var modules = {};
   var specifiedModules;
   Object.keys(spec.versions).sort().forEach(function (moduleName) {
@@ -44,8 +46,8 @@ module.exports = function dynavers (specPath) {
     };
   }
 
-  // API
-  return function specifyModuleVersion (moduleName, version) {
+  // main API method
+  return function specifyModuleVersion (moduleName, version, purgeCache) {
     if (modules[moduleName] == null) {
       throw new Error("Module '" + moduleName + "' not found in " + specPath);
     }
@@ -57,11 +59,20 @@ module.exports = function dynavers (specPath) {
       specifiedModules = {};
       startInterceptingLoad();
     }
+
+    if (purgeCache === undefined) purgeCache = defaultPurgeCache;
+    if (purgeCache) module.exports.purgeCache();
     specifiedModules[moduleName] = versions[version];
   };
 };
 
-// install utility
+// API utilities
+module.exports.purgeCache = function () {
+  Object.keys(require.cache).forEach((key) => {
+    delete require.cache[key];
+  });
+};
+
 module.exports.install = function (specPath) {
   var spec = getSpec(specPath);
 
@@ -111,13 +122,12 @@ module.exports.install = function (specPath) {
   return promise;
 };
 
-// common utility function
+// utility function
 function getSpec (specPath) {
   // specPath is relative to cwd, so we need to call realpathSync
   var spec = require(fs.realpathSync(specPath));
   if (!spec || !spec.hasOwnProperty('path') || Array.isArray(spec.versions)) {
-    throw new Error('Invalid version spec; expected { path: "dynavers_modules", versions: { ... } }, got ' +
-      require('util').inspect(spec));
+    throw new Error('Invalid version spec; expected { path: "dynavers_modules", versions: { ... } }, got ' + require('util').inspect(spec));
   }
   return spec;
 }
