@@ -34,7 +34,7 @@ module.exports = function dynavers (specPath) {
       if (specifiedModules[request]) {
         request = specifiedModules[request];
       } else {
-        index = request.indexOf(path.sep);
+        index = request.indexOf(path.posix.sep);
         if (index > -1) {
           first = request.slice(0, index);
           if (specifiedModules[first]) {
