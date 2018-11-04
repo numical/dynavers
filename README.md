@@ -112,3 +112,15 @@ for a single `require` call via its `multidepRequire`.
 This tool is based on [multidep](https://github.com/joliss/node-multidep) - thanks [Jo
 Liss](https://github.com/joliss)!  
 (I would have submitted a Pull Request but by the time I had changed the external API and the core mechanism, I don't think it would have been accepted).
+
+## Change History
+
+v0.3.x
+* windows support (thanks to [@snadn](https://github.com/snadn))
+* updated dependencies
+
+v0.2.x
+* add purge cache options
+
+v0.1.x
+* initial release

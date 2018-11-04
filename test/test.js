@@ -3,7 +3,7 @@
 'use strict';
 
 require('jasmine2-custom-message');
-const SpecReporter = require('jasmine-spec-reporter');
+const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 jasmine.getEnv().addReporter(new SpecReporter());
 
 const dynavers = require('../');
