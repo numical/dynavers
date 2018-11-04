@@ -118,6 +118,7 @@ Liss](https://github.com/joliss)!
 v0.3.x
 * windows support (thanks to [@snadn](https://github.com/snadn))
 * updated dependencies
+* tests run node 4.x to 11.x
 
 v0.2.x
 * add purge cache options
